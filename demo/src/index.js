@@ -1,15 +1,23 @@
-import React, {Component} from 'react'
-import {render} from 'react-dom'
-import AuthComponent from '../../src/components/AuthComponent'
+import React, {Component} from 'react';
+import {render} from 'react-dom';
+import AuthComponent from '../../src/components/AuthComponent';
+import CallbackComponent from '../../src/components/CallbackComponent';
+import App from './app';
+import PublicPage from './publicPage';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 class Demo extends Component {
   render() {
     return <div>
-      <h1>auth-component-2 Demo</h1>
-      one
-      <AuthComponent>a</AuthComponent>
-      two
-    </div>
+          <App>
+            <BrowserRouter>
+              <Switch>
+                <Route path='/callback' component={CallbackComponent} />
+                <Route path='/' component={PublicPage} />
+              </Switch>
+            </BrowserRouter>
+          </App>
+       </div>
   }
 }
 
