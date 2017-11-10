@@ -18,6 +18,7 @@ class AuthComponent extends Component {
 
 export const fakeAuth = {
   isAuthenticated: false,
+  wibble:"this is a string",
   authenticate(cb) {
     this.isAuthenticated = true
     setTimeout(cb, 100) // fake async
@@ -25,6 +26,11 @@ export const fakeAuth = {
   signout(cb) {
     this.isAuthenticated = false
     setTimeout(cb, 100)
+  },
+  user_data: {
+    name:null,
+    email:null,
+    token:null
   }
 }
 
