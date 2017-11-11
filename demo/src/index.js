@@ -20,7 +20,10 @@ class Demo extends Component {
 
   render() {
     return <BrowserRouter>
+      <div>
+        isAuthenticated:{''+this.state.userInfo.isAuthenticated}<br/>
         <App user={this.state.userInfo}/>
+      </div>
       </BrowserRouter>
   }
 }

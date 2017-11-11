@@ -10,7 +10,7 @@ class Header extends Component {
       <div>
         <li><Link to="/">Root</Link></li>
         <li><Link to="/protected">Protected Page</Link></li>
-        <li>userInfo:: {this.props.user}</li>
+        <li>userInfo:: {this.props.user.wibble}</li>
       </div>
     </div>
   }

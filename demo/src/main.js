@@ -15,8 +15,7 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' component={PublicPage} />
           <Route path='/callback' component={CallbackComponent} />
-          <Route path="/protected" component={ProtectedPage} />
-          <PrivateRoute path="/protected2" component={ProtectedPage} />
+          <PrivateRoute user={this.props.user} path="/protected" component={ProtectedPage} />
         </Switch>
     </div>
   }

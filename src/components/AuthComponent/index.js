@@ -34,18 +34,20 @@ export const fakeAuth = {
   }
 }
 
-export const PrivateRoute = ({ component: Component, ...rest }) => (
-  <Route {...rest} render={props => (
-    fakeAuth.isAuthenticated ? (
-      <Component {...props}/>
-    ) : (
-      <Redirect to={{
-        pathname: '/login',
-        state: { from: props.location }
-      }}/>
-    )
-  )}/>
-)
+  export const PrivateRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (
+
+      rest.user.isAuthenticated ? (
+      // false ? (
+        <Component {...props}/>
+      ) : (
+        <Redirect to={{
+          pathname: '/login',
+          state: { from: props.location }
+        }}/>
+      )
+    )}/>
+  )
 
 
 export default AuthComponent;

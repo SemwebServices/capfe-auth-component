@@ -8,8 +8,8 @@ class App extends Component {
 
   render() {
     return <div>
-      <Header/>
-      <Main/>
+      <Header user={this.props.user} />
+      <Main user={this.props.user} />
     </div>
   }
 }
