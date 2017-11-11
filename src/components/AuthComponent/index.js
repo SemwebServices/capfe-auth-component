@@ -38,14 +38,17 @@ export const fakeAuth = {
     <Route {...rest} render={props => (
 
       rest.user.isAuthenticated ? (
-      // false ? (
+        // User is authenticated -- send directly to component
         <Component {...props}/>
-      ) : (
-        <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-        }}/>
-      )
+      ) : window.location.href='https://apps.semweb.co/auth/prompt?flow=http://localhost:3000/callback'
+      // (
+        // User is not authenticated -- redirect to auth service
+        // <Redirect to={{
+        //   pathname: '/login',
+        //   state: { from: props.location }
+        // }}/>
+      // window.location.href='https://apps.semweb.co/auth/prompt?flow=http://localhost:3000/callback';
+      // )
     )}/>
   )
 
