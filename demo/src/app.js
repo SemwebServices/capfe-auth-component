@@ -1,16 +1,15 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
+import {Link} from 'react-router-dom'
+import Header from './header';
+import Main from './main';
 
 class App extends Component {
 
   render() {
     return <div>
-      <h1>The app</h1>
-      userInfo:: {this.props.user.wibble}
-      <p>This is boilerplate</p>
-      Now comes the actual children::
-      {this.props.children}
-      <p>End of content, back to boilerplate</p>
+      <Header/>
+      <Main/>
     </div>
   }
 }
