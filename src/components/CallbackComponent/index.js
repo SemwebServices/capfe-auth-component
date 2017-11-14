@@ -13,7 +13,6 @@ class CallbackComponent extends Component {
         <li>{this.props.location ? this.props.location.query : 'no this.props.location.query'}</li>
         <li>{this.props.to ? this.props.to.query : 'no this.props.to.query'}</li>
         <li>{window.location ? window.location.hash : 'No windown.location.hash'}</li>
-        <li>{window.location ? window.location : 'No windown.location'}</li>
       </ul>
     </div>;
   }

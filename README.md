@@ -16,3 +16,6 @@ Describe auth-component-2 here.
 [coveralls]: https://coveralls.io/github/user/repo
 
 https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb
+
+npm run start
+
