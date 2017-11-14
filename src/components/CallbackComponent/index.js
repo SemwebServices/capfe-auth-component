@@ -4,15 +4,18 @@ import {render} from 'react-dom'
 // Extends React.Compoent
 class CallbackComponent extends Component {
 
-  // this.props.location.query
+  constructor(props) {
+    super(props);
+    this.state = { 
+      "hashFragment": window.location.hash 
+    };
+  }
 
   render(){
     return <div>
       this is for callbacks 
       <ul>
-        <li>{this.props.location ? this.props.location.query : 'no this.props.location.query'}</li>
-        <li>{this.props.to ? this.props.to.query : 'no this.props.to.query'}</li>
-        <li>{window.location ? window.location.hash : 'No windown.location.hash'}</li>
+        <li>{this.state.hashFragment}</li>
       </ul>
     </div>;
   }
