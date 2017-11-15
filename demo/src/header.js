@@ -10,8 +10,7 @@ class Header extends Component {
       <div>
         <li><Link to="/">Root</Link></li>
         <li><Link to="/protected">Protected Page</Link></li>
-        <li>userInfo:: {this.props.user.wibble}</li>
-        <li>{ this.props.user.email ? this.props.user.email : 'no email ' }</li>
+        <li>{ this.props.user != null ? this.props.user.email : 'no email ' }</li>
       </div>
     </div>
   }

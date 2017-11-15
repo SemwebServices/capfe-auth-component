@@ -19,7 +19,9 @@ class AuthComponent extends Component {
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
 
-  rest.user.isAuthenticated ? (
+  // rest.user.isAuthenticated ? (
+  // ToDo: Get usAuthenticated from passed in state
+  false ? (
         // User is authenticated -- send directly to component
         <Component {...props}/>
   ) : window.location.href='https://apps.semweb.co/auth/prompt?flow=http://localhost:3000/callback'

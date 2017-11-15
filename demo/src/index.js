@@ -1,14 +1,36 @@
+// react style guide :: https://github.com/airbnb/javascript/tree/master/react
+// JS Style guide :: http://airbnb.io/javascript/
+
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import {AuthComponent, PrivateRoute, fakeAuth} from '../../src/components/AuthComponent';
-import CallbackComponent from '../../src/components/CallbackComponent';
+
+import {AuthComponent, 
+	PrivateRoute } from '../../src/components/AuthComponent';
+
+import {CallbackComponent,
+	authReducer } from '../../src/components/CallbackComponent';
+
 import App from './app';
+
 import { BrowserRouter } from 'react-router-dom'
-import { connect, Provider } from 'react-redux'
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+
+import { connect, 
+	 Provider } from 'react-redux'
+
+import { ConnectedRouter, 
+	 routerReducer, 
+	 routerMiddleware, 
+	 push } from 'react-router-redux'
+
+import { createStore, 
+	 applyMiddleware, 
+	 combineReducers } from 'redux'
+
 import createHistory from 'history/createBrowserHistory'
-import { Route, Switch } from 'react-router'
+
+import { Route, 
+	 Switch } from 'react-router'
+
 import { Redirect } from 'react-router-dom'
 
 
@@ -17,8 +39,7 @@ import { Redirect } from 'react-router-dom'
 const history = createHistory();
 
 const store = createStore(
-	  // combineReducers({ routerReducer, authReducer }),
-	  combineReducers({ routerReducer }),
+	  combineReducers({ routerReducer, authReducer }),
 	  applyMiddleware(routerMiddleware(history)),
 );
 
@@ -42,7 +63,7 @@ class Demo extends Component {
       <ConnectedRouter history={this.props.history}>
         <div>
           isAuthenticated:{''+this.state.userInfo.isAuthenticated}<br/>
-          <App user={this.state.userInfo}/>
+          <App />
         </div>
       </ConnectedRouter>
     </Provider>

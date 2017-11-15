@@ -24,9 +24,9 @@ class CallbackComponent extends Component {
           }
           console.log("Props.user now %o",props.user);
         }
-	else {
+  else {
           console.log("No user");
-	}
+  }
 
         this.state = { 
           "hashFragment": window.location.hash,
@@ -56,5 +56,27 @@ class CallbackComponent extends Component {
   }
 
 }
+
+const initialState = {
+	  isAuthenticated: false
+}
+
+export const authReducer = (state = initialState , action) => {
+  switch (action.type) {
+    case 'AUTH_SUCCESS':
+      return {
+        ...state,
+        isAuthenticated: true
+      }
+    case 'AUTH_FAIL':
+      return {
+        ...state,
+        isAuthenticated: false
+      }
+    default:
+      return state
+  }
+};
+
 
 export default CallbackComponent;
