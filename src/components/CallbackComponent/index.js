@@ -12,7 +12,7 @@ class CallbackComponent extends Component {
       var decoded_jwt = jwtDecode(window.location.hash);
       if ( decoded_jwt != null ) {
 
-        console.log("JWT: %o this.props:%o",this.state.decodedJWT,this.props);
+        console.log("JWT: %o this.props:%o",decoded_jwt,this.props);
 
         if ( props.user ) {
           if ( ( this.state.decodedJWT != null ) && ( this.state.decodedJWT.sub != null ) ) {
