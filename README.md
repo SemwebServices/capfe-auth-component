@@ -16,6 +16,7 @@ Describe auth-component-2 here.
 [coveralls]: https://coveralls.io/github/user/repo
 
 https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb
+https://github.com/ReactTraining/react-router/blob/master/packages/react-router-redux/examples/AuthExample.js
 
 npm run start
 
