@@ -13,8 +13,8 @@ class Main extends Component {
   render() {
     return <div>
         <Switch>
-          <Route exact path='/' component={PublicPage} user={this.props.user} />
-          <Route path='/callback' component={CallbackComponent} user={this.props.user} />
+          <Route user={this.props.user} exact path='/' component={PublicPage} />
+          <Route user={this.props.user} path='/callback' component={CallbackComponent} />
           <PrivateRoute user={this.props.user} path="/protected" component={ProtectedPage} />
         </Switch>
     </div>

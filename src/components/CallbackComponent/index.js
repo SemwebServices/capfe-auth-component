@@ -12,26 +12,26 @@ class CallbackComponent extends Component {
       var decoded_jwt = jwtDecode(window.location.hash);
       if ( decoded_jwt != null ) {
 
-        this.state = { 
-          "hashFragment": window.location.hash,
-          "decodedJWT":jwtDecode(window.location.hash),
-          "userInfo":props.user
-        };
-
         console.log("JWT: %o this.props:%o",this.state.decodedJWT,this.props);
 
         if ( props.user ) {
           if ( ( this.state.decodedJWT != null ) && ( this.state.decodedJWT.sub != null ) ) {
-            this.props.user.isAuthenticated = true;
-            this.props.user.displayName = this.state.decodedJWT.displayName;
-            this.props.user.email = this.state.decodedJWT.email;
-            this.props.user.sub = this.state.decodedJWT.sub;
+            // We need to store user info so that it's available at the top level
+            // this.props.user.isAuthenticated = true;
+            // this.props.user.displayName = this.state.decodedJWT.displayName;
+            // this.props.user.email = this.state.decodedJWT.email;
+            // this.props.user.sub = this.state.decodedJWT.sub;
           }
           console.log("Props.user now %o",props.user);
         }
 	else {
           console.log("No user");
 	}
+
+        this.state = { 
+          "hashFragment": window.location.hash,
+          "decodedJWT":decoded_jwt
+        };
 
       }
     }
