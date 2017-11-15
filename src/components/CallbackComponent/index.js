@@ -3,6 +3,8 @@ import {render} from 'react-dom'
 import jwtDecode from 'jwt-decode'
 
 // Extends React.Compoent
+// Inspiration from https://github.com/ReactTraining/react-router/blob/master/packages/react-router-redux/examples/AuthExample.js
+//
 class CallbackComponent extends Component {
 
   constructor(props) {
