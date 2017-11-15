@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import jwtDecode from 'jwt-decode'
+import store from 'store';
 
 // Extends React.Compoent
 class CallbackComponent extends Component {
@@ -20,19 +21,19 @@ class CallbackComponent extends Component {
 
         console.log("JWT: %o this.props:%o",this.state.decodedJWT,this.props);
 
-        if ( props.user ) {
-          if ( ( this.state.decodedJWT != null ) && ( this.state.decodedJWT.sub != null ) ) {
-            this.props.user.isAuthenticated = true;
-            this.props.user.displayName = this.state.decodedJWT.displayName;
-            this.props.user.email = this.state.decodedJWT.email;
-            this.props.user.sub = this.state.decodedJWT.sub;
-          }
-          console.log("Props.user now %o",props.user);
+        if ( ( this.state.decodedJWT != null ) && ( this.state.decodedJWT.sub != null ) ) {
+            // see https://github.com/scotch-io/react-router-course
+            store.set("loggedin",true);
+            store.set("userInfo",this.state.decodedJWT)
+            // this.props.user.isAuthenticated = true;
+            // this.props.user.displayName = this.state.decodedJWT.displayName;
+            // this.props.user.email = this.state.decodedJWT.email;
+            // this.props.user.sub = this.state.decodedJWT.sub;
         }
-	else {
-          console.log("No user");
-	}
-
+        else {
+          store.set("loggedIn",false);
+          store.remove("userInfo");
+        }
       }
     }
   }

@@ -19,6 +19,7 @@ class AuthComponent extends Component {
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
 
+  // Use user from store instead
   rest.user.isAuthenticated ? (
         // User is authenticated -- send directly to component
         <Component {...props}/>
