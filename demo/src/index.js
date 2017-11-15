@@ -36,16 +36,17 @@ class Demo extends Component {
     console.log("Demo::constructor(%o)",props);
   }
 
+  // BrowserRouter / ConnectedRouter history={this.props.history}
   render() {
     return  <Provider store={this.props.store}>
-      <BrowserRouter>
+      <ConnectedRouter history={this.props.history}>
         <div>
           isAuthenticated:{''+this.state.userInfo.isAuthenticated}<br/>
           <App user={this.state.userInfo}/>
         </div>
-      </BrowserRouter>
+      </ConnectedRouter>
     </Provider>
   }
 }
 
-render(<Demo store={store} />, document.querySelector('#demo'))
+render(<Demo store={store} history={history}/>, document.querySelector('#demo'))
