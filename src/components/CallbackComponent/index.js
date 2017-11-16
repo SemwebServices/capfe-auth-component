@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import {render} from 'react-dom'
 import jwtDecode from 'jwt-decode'
 import {connect} from 'react-redux'
+import { push } from 'react-router-redux'
 
 // Extends React.Compoent
 // Inspiration from https://github.com/ReactTraining/react-router/blob/master/packages/react-router-redux/examples/AuthExample.js
@@ -67,10 +68,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     // When we login, we call this.loginSuccess(user) to dispatch the appropriate msg
-    loginSuccess : (user_param) => dispatch({
-      type: 'AUTH_SUCCESS', 
-      user: user_param
-    })
+    loginSuccess : (user_param) => {
+      dispatch({ type: 'AUTH_SUCCESS', user: user_param });
+      dispatch(push('/'));
+    }
   }
 }
 

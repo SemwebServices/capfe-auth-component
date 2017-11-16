@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class Header extends Component {
 
@@ -16,4 +17,22 @@ class Header extends Component {
   }
 }
 
-export default Header
+const mapStateToProps = state => {
+  console.log("mapStateToProps %o",state);
+  return {
+    isAuthenticated: state.authReducer ? state.authReducer.isAuthenticated : false,
+    user: state.authReducer ? state.authReducer.user : null
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+  }
+}
+
+// export default Header
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header)
+
