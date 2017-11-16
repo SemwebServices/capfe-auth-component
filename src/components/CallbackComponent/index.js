@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {render} from 'react-dom'
 import jwtDecode from 'jwt-decode'
+import {connect} from 'react-redux'
 
 // Extends React.Compoent
 // Inspiration from https://github.com/ReactTraining/react-router/blob/master/packages/react-router-redux/examples/AuthExample.js
@@ -9,52 +10,25 @@ class CallbackComponent extends Component {
 
   constructor(props) {
     super(props);
-
-    if ( ( window.location.hash != null ) && ( window.location.hash.length > 1 ) ) {
-      var decoded_jwt = jwtDecode(window.location.hash);
-      if ( decoded_jwt != null ) {
-
-        console.log("JWT: %o this.props:%o",decoded_jwt,this.props);
-
-        if ( props.user ) {
-          if ( ( this.state.decodedJWT != null ) && ( this.state.decodedJWT.sub != null ) ) {
-            // We need to store user info so that it's available at the top level
-            // this.props.user.isAuthenticated = true;
-            // this.props.user.displayName = this.state.decodedJWT.displayName;
-            // this.props.user.email = this.state.decodedJWT.email;
-            // this.props.user.sub = this.state.decodedJWT.sub;
-          }
-          console.log("Props.user now %o",props.user);
-        }
-  else {
-          console.log("No user");
   }
 
-        this.state = { 
-          "hashFragment": window.location.hash,
-          "decodedJWT":decoded_jwt
-        };
+  componentWillMount() {
+  }
 
+  componentDidMount() {
+    let decoded_jwt = null;
+    if ( ( window.location.hash != null ) && ( window.location.hash.length > 1 ) ) {
+      decoded_jwt = jwtDecode(window.location.hash);
+      if ( decoded_jwt != null ) {
+        console.log("JWT: %o this.props:%o. DISPATCH AUTH_SUCCESS",decoded_jwt,this.props);
+        this.props.loginSuccess(decoded_jwt);
       }
     }
   }
 
   render(){
-    var user_info_block;
-
     console.log("props: %o",this.props);
-
-    if ( this.props.user != null ) {
-      user_info_block = <ul><li>{this.state.hashFragment}</li><li>{this.props.user.email}</li></ul>
-    }
-    else {
-      user_info_block = <ul><li>No user info</li></ul>
-    }
-
-    return <div>
-      this is for callbacks 
-      {user_info_block}
-    </div>;
+    return <div></div>;
   }
 
 }
@@ -66,19 +40,43 @@ const initialState = {
 export const authReducer = (state = initialState , action) => {
   switch (action.type) {
     case 'AUTH_SUCCESS':
+      console.log("Process AUTH_SUCCESS %o",action);
       return {
         ...state,
-        isAuthenticated: true
+        isAuthenticated: true,
+        user:action.user
       }
     case 'AUTH_FAIL':
       return {
         ...state,
-        isAuthenticated: false
+        isAuthenticated: false,
+        user:null
       }
     default:
       return state
   }
 };
 
+const mapStateToProps = state => {
+  console.log("mapStateToProps");
+  return {
+    user: state.user
+  }
+}
 
-export default CallbackComponent;
+const mapDispatchToProps = dispatch => {
+  return {
+    // When we login, we call this.loginSuccess(user) to dispatch the appropriate msg
+    loginSuccess : (user_param) => dispatch({
+      type: 'AUTH_SUCCESS', 
+      user: user_param
+    })
+  }
+}
+
+// export default CallbackComponent;
+export default connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)(CallbackComponent)
+
