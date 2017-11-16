@@ -4,8 +4,7 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 
-import {AuthComponent, 
-	PrivateRoute } from '../../src/components/AuthComponent';
+import { PrivateRoute } from '../../src/components/AuthComponent';
 
 import {CallbackComponent,
 	authReducer } from '../../src/components/CallbackComponent';

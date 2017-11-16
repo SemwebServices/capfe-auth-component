@@ -4,17 +4,25 @@ import { Route, Redirect } from 'react-router-dom'
 
 // See https://reacttraining.com/react-router/web/example/auth-workflow
 
-// Extends React.Compoent
-class AuthComponent extends Component {
-
-  render(){
-    return <div>
-      <h1>This is the auth component{this.props.name}</h1>
-      ...hello...
-    </div>;
-  }
-
-}
+// class PrivateRouteContainer extends React.Component {
+//
+//   render() {
+//      const {
+//        isAuthenticated,
+//        component: Component,
+//        ...props
+//      } = this.props
+//      
+//      return <Route {...props}
+//                    render={props =>
+//                    isAuthenticated ?  <Component {...props}/> : window.location.href='https://apps.semweb.co/auth/prompt?flow=http://localhost:3000/callback' } />
+//   }
+//
+// }
+//
+// const PrivateRoute = connect(state => ({
+//     isAuthenticated: state.authReducer.isAuthenticated
+// }))(PrivateRouteContainer)
 
 export const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route {...rest} render={props => (
@@ -35,6 +43,3 @@ export const PrivateRoute = ({ component: Component, ...rest }) => (
       // )
   )}/>
 )
-
-
-export default AuthComponent;

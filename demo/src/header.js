@@ -17,6 +17,7 @@ class Header extends Component {
   }
 }
 
+// import {connect} from 'react-redux'
 const mapStateToProps = state => {
   console.log("mapStateToProps %o",state);
   return {
