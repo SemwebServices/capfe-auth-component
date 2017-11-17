@@ -3,6 +3,7 @@ import {render} from 'react-dom'
 import jwtDecode from 'jwt-decode'
 import {connect} from 'react-redux'
 import { push } from 'react-router-redux'
+import store from 'store'
 
 // Extends React.Compoent
 // Inspiration from https://github.com/ReactTraining/react-router/blob/master/packages/react-router-redux/examples/AuthExample.js
@@ -23,6 +24,10 @@ class CallbackComponent extends Component {
       if ( decoded_jwt != null ) {
         console.log("JWT: %o this.props:%o. DISPATCH AUTH_SUCCESS",decoded_jwt,this.props);
         this.props.loginSuccess(decoded_jwt);
+        store.remove('user');
+        store.remove('isAuthenticated');
+        store.set('user',decoded_jwt);
+        store.set('isAuthenticated',true);
       }
     }
   }

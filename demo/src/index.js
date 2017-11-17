@@ -32,6 +32,8 @@ import { Route,
 
 import { Redirect } from 'react-router-dom'
 
+import persistent_store from 'store'
+
 
 // Some inspiration from https://medium.freecodecamp.org/where-do-i-belong-a-guide-to-saving-react-component-data-in-state-store-static-and-this-c49b335e2a00
 //
